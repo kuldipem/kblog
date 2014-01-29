@@ -7,13 +7,11 @@ use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 
 class StofDoctrineExtensionsExtension extends Extension
 {
     private $entityManagers   = array();
     private $documentManagers = array();
-    private $defaultFilePath  = false;
 
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -104,6 +102,11 @@ class StofDoctrineExtensionsExtension extends Extension
         // Default FileInfoInterface class
         $container->setParameter('stof_doctrine_extensions.uploadable.default_file_info.class', $uploadableConfig['default_file_info_class']);
 
+        $container->setParameter(
+            'stof_doctrine_extensions.uploadable.validate_writable_directory',
+            $uploadableConfig['validate_writable_directory']
+        );
+
         if ($uploadableConfig['mime_type_guesser_class']) {
             if (!class_exists($uploadableConfig['mime_type_guesser_class'])) {
                 $msg = 'Class "%s" configured to use as the mime type guesser in the Uploadable extension does not exist.';
@@ -114,11 +117,6 @@ class StofDoctrineExtensionsExtension extends Extension
             $container->setParameter(
                 'stof_doctrine_extensions.uploadable.mime_type_guesser.class',
                 $uploadableConfig['mime_type_guesser_class']
-            );
-
-            $container->setParameter(
-                'stof_doctrine_extensions.uploadable.validate_writable_directory',
-                $uploadableConfig['validate_writable_directory']
             );
         }
 

@@ -1,7 +1,7 @@
 services:
     # KernelRequest listener
     extension.listener:
-        class: kblog\frontend\CoreBundle\Listener\DoctrineExtensionListener
+        class: kblog\CoreBundle\Listener\DoctrineExtensionListener
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:

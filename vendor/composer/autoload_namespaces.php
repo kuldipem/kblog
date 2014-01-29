@@ -16,6 +16,7 @@ return array(
     'Stof\\DoctrineExtensionsBundle' => array($vendorDir . '/stof/doctrine-extensions-bundle'),
     'Stfalcon\\Bundle\\TinymceBundle' => array($vendorDir . '/stfalcon/tinymce-bundle'),
     'Sonata\\jQueryBundle' => array($vendorDir . '/sonata-project/jquery-bundle'),
+    'Sonata\\DoctrineORMAdminBundle' => array($vendorDir . '/sonata-project/doctrine-orm-admin-bundle'),
     'Sonata\\CoreBundle' => array($vendorDir . '/sonata-project/core-bundle'),
     'Sonata\\BlockBundle' => array($vendorDir . '/sonata-project/block-bundle'),
     'Sonata\\AdminBundle' => array($vendorDir . '/sonata-project/admin-bundle'),
