@@ -1,0 +1,6 @@
+twig:
+    globals:
+        project: K-Blog
+        author: KULDIP PIPALIYA
+        email:  kuldipem@gmail.com
+        jquery_cdn_url: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js

@@ -1,3 +1,0 @@
-kblogfrontend_home_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: kblogfrontendHomeBundle:Default:index }

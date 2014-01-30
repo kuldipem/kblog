@@ -426,7 +426,10 @@
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
     <parameter key="assetic.cache_dir">/var/www/html/www.kblog.com/app/cache/dev/assetic</parameter>
-    <parameter key="assetic.bundles" type="collection"/>
+    <parameter key="assetic.bundles" type="collection">
+      <parameter>CoreBundle</parameter>
+      <parameter>kblogfrontendHomeBundle</parameter>
+    </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
     <parameter key="assetic.helper.dynamic.class">Symfony\Bundle\AsseticBundle\Templating\DynamicAsseticHelper</parameter>
@@ -439,10 +442,25 @@
     <parameter key="assetic.write_to">/var/www/html/www.kblog.com/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
+    <parameter key="assetic.filter.yui_css.class">Assetic\Filter\Yui\CssCompressorFilter</parameter>
+    <parameter key="assetic.filter.yui_css.java">/usr/bin/java</parameter>
+    <parameter key="assetic.filter.yui_css.jar">/var/www/html/www.kblog.com/app/Resources/Java/YUI.jar</parameter>
+    <parameter key="assetic.filter.yui_css.charset">UTF-8</parameter>
+    <parameter key="assetic.filter.yui_css.stacksize">null</parameter>
+    <parameter key="assetic.filter.yui_css.timeout">null</parameter>
+    <parameter key="assetic.filter.yui_js.class">Assetic\Filter\Yui\JsCompressorFilter</parameter>
+    <parameter key="assetic.filter.yui_js.java">/usr/bin/java</parameter>
+    <parameter key="assetic.filter.yui_js.jar">/var/www/html/www.kblog.com/app/Resources/Java/YUI.jar</parameter>
+    <parameter key="assetic.filter.yui_js.charset">UTF-8</parameter>
+    <parameter key="assetic.filter.yui_js.stacksize">null</parameter>
+    <parameter key="assetic.filter.yui_js.timeout">null</parameter>
+    <parameter key="assetic.filter.yui_js.nomunge">null</parameter>
+    <parameter key="assetic.filter.yui_js.preserve_semi">null</parameter>
+    <parameter key="assetic.filter.yui_js.disable_optimizations">null</parameter>
     <parameter key="assetic.twig_extension.functions" type="collection"/>
     <parameter key="assetic.controller.class">Symfony\Bundle\AsseticBundle\Controller\AsseticController</parameter>
     <parameter key="assetic.routing_loader.class">Symfony\Bundle\AsseticBundle\Routing\AsseticLoader</parameter>
@@ -701,7 +719,32 @@
       </parameter>
     </parameter>
     <parameter key="sonata.admin.security.acl_user_manager">fos_user.user_manager</parameter>
-    <parameter key="sonata.admin.configuration.security.information" type="collection"/>
+    <parameter key="sonata.admin.configuration.security.information" type="collection">
+      <parameter key="EDIT" type="collection">
+        <parameter>EDIT</parameter>
+      </parameter>
+      <parameter key="LIST" type="collection">
+        <parameter>LIST</parameter>
+      </parameter>
+      <parameter key="CREATE" type="collection">
+        <parameter>CREATE</parameter>
+      </parameter>
+      <parameter key="VIEW" type="collection">
+        <parameter>VIEW</parameter>
+      </parameter>
+      <parameter key="DELETE" type="collection">
+        <parameter>DELETE</parameter>
+      </parameter>
+      <parameter key="EXPORT" type="collection">
+        <parameter>EXPORT</parameter>
+      </parameter>
+      <parameter key="OPERATOR" type="collection">
+        <parameter>OPERATOR</parameter>
+      </parameter>
+      <parameter key="MASTER" type="collection">
+        <parameter>MASTER</parameter>
+      </parameter>
+    </parameter>
     <parameter key="sonata.admin.configuration.security.admin_permissions" type="collection">
       <parameter>CREATE</parameter>
       <parameter>LIST</parameter>
@@ -943,7 +986,32 @@
         </argument>
       </call>
       <call method="setSecurityInformation">
-        <argument type="collection"/>
+        <argument type="collection">
+          <argument key="EDIT" type="collection">
+            <argument>EDIT</argument>
+          </argument>
+          <argument key="LIST" type="collection">
+            <argument>LIST</argument>
+          </argument>
+          <argument key="CREATE" type="collection">
+            <argument>CREATE</argument>
+          </argument>
+          <argument key="VIEW" type="collection">
+            <argument>VIEW</argument>
+          </argument>
+          <argument key="DELETE" type="collection">
+            <argument>DELETE</argument>
+          </argument>
+          <argument key="EXPORT" type="collection">
+            <argument>EXPORT</argument>
+          </argument>
+          <argument key="OPERATOR" type="collection">
+            <argument>OPERATOR</argument>
+          </argument>
+          <argument key="MASTER" type="collection">
+            <argument>MASTER</argument>
+          </argument>
+        </argument>
       </call>
       <call method="initialize"/>
     </service>
@@ -3518,7 +3586,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52e8ea4b3750d</argument>
+            <argument>52ea00247a58e</argument>
           </service>
         </argument>
       </argument>
@@ -3788,7 +3856,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52e8ea4b3750d</argument>
+            <argument>52ea00247a58e</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4014,7 +4082,10 @@
             <argument type="service" id="templating.name_parser"/>
             <argument>true</argument>
             <argument type="collection"/>
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument>CoreBundle</argument>
+              <argument>kblogfrontendHomeBundle</argument>
+            </argument>
             <argument type="service" id="assetic.value_supplier.default" on-invalid="null"/>
           </service>
         </argument>
@@ -4067,6 +4138,22 @@
         <argument type="service" id="templating.globals"/>
       </call>
       <call method="addGlobal">
+        <argument>project</argument>
+        <argument>K-Blog</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>author</argument>
+        <argument>KULDIP PIPALIYA</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>email</argument>
+        <argument>kuldipem@gmail.com</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>jquery_cdn_url</argument>
+        <argument>http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js</argument>
+      </call>
+      <call method="addGlobal">
         <argument>sonata_block</argument>
         <argument type="service" id="sonata.block.twig.global"/>
       </call>
@@ -4111,6 +4198,8 @@
       <argument type="service" id="service_container"/>
       <argument type="collection">
         <argument key="cssrewrite">assetic.filter.cssrewrite</argument>
+        <argument key="yui_css">assetic.filter.yui_css</argument>
+        <argument key="yui_js">assetic.filter.yui_js</argument>
       </argument>
     </service>
     <service id="assetic.asset_manager" class="Assetic\Factory\LazyAssetManager">
@@ -4135,6 +4224,60 @@
           </service>
         </argument>
       </argument>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>CoreBundle</argument>
+                  <argument>/var/www/html/www.kblog.com/app/Resources/CoreBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>CoreBundle</argument>
+                  <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>kblogfrontendHomeBundle</argument>
+                  <argument>/var/www/html/www.kblog.com/app/Resources/kblogfrontendHomeBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>kblogfrontendHomeBundle</argument>
+                  <argument>/var/www/html/www.kblog.com/src/kblog/frontend/HomeBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
       <call method="addResource">
         <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
@@ -4170,6 +4313,43 @@
     </service>
     <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
       <tag name="assetic.filter" alias="cssrewrite"/>
+    </service>
+    <service id="assetic.filter.yui_css" class="Assetic\Filter\Yui\CssCompressorFilter">
+      <tag name="assetic.filter" alias="yui_css"/>
+      <argument>/var/www/html/www.kblog.com/app/Resources/Java/YUI.jar</argument>
+      <argument>/usr/bin/java</argument>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setStackSize">
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="assetic.filter.yui_js" class="Assetic\Filter\Yui\JsCompressorFilter">
+      <tag name="assetic.filter" alias="yui_js"/>
+      <argument>/var/www/html/www.kblog.com/app/Resources/Java/YUI.jar</argument>
+      <argument>/usr/bin/java</argument>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setStackSize">
+        <argument>null</argument>
+      </call>
+      <call method="setNomunge">
+        <argument>null</argument>
+      </call>
+      <call method="setPreserveSemi">
+        <argument>null</argument>
+      </call>
+      <call method="setDisableOptimizations">
+        <argument>null</argument>
+      </call>
     </service>
     <service id="assetic.controller" class="Symfony\Bundle\AsseticBundle\Controller\AsseticController" scope="prototype">
       <argument type="service" id="request"/>
@@ -4950,9 +5130,9 @@
       <argument>bundles/sonataadmin/logo_title.png</argument>
       <argument type="collection">
         <argument key="html5_validate">true</argument>
-        <argument key="confirm_exit">true</argument>
+        <argument key="confirm_exit">false</argument>
         <argument key="use_select2">true</argument>
-        <argument key="pager_links">null</argument>
+        <argument key="pager_links">5</argument>
       </argument>
       <call method="setTemplates">
         <argument type="collection">
@@ -5595,7 +5775,12 @@
       </argument>
       <argument>kblog\CoreBundle\Entity\User</argument>
     </service>
-    <service id="sonata.admin.security.handler" class="Sonata\AdminBundle\Security\Handler\NoopSecurityHandler"/>
+    <service id="sonata.admin.security.handler" class="Sonata\AdminBundle\Security\Handler\RoleSecurityHandler">
+      <argument type="service" id="security.context" on-invalid="null"/>
+      <argument type="collection">
+        <argument>ROLE_SUPER_ADMIN</argument>
+      </argument>
+    </service>
     <service id="knp_menu.menu_provider" class="Knp\Menu\Provider\ChainProvider">
       <argument type="collection">
         <argument type="service">

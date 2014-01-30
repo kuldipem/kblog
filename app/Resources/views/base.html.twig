@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="{{ author }}" />
+        <meta name="email" content="{{ email }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>{% block title %} Welcome !!{% endblock %} - K-Blog</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}{% endblock %}
+        {% block baseJavascripts %}{% endblock %}
     </head>
-    <body>
+    <body class="stretched" >
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        {% block lazyLoadStylesheets %}{% endblock %}
     </body>
 </html>

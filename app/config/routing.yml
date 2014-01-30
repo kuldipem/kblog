@@ -1,11 +1,8 @@
 kblogfrontend_home:
-    resource: "@kblogfrontendHomeBundle/Resources/config/routing.yml"
+    resource: "@kblogfrontendHomeBundle/Controller"
     prefix:   /
-
-core:
-    resource: "@CoreBundle/Resources/config/routing.yml"
-    prefix:   /
-
+    type:     annotation
+   
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

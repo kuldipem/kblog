@@ -27,6 +27,179 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $context = $this->context;
         $request = $this->request;
 
+        if (0 === strpos($pathinfo, '/css/19fd17d')) {
+            // _assetic_19fd17d
+            if ($pathinfo === '/css/19fd17d.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_19fd17d',);
+            }
+
+            if (0 === strpos($pathinfo, '/css/19fd17d_')) {
+                // _assetic_19fd17d_0
+                if ($pathinfo === '/css/19fd17d_style_1.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_19fd17d_0',);
+                }
+
+                // _assetic_19fd17d_1
+                if ($pathinfo === '/css/19fd17d_bootstrap_2.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_19fd17d_1',);
+                }
+
+                // _assetic_19fd17d_2
+                if ($pathinfo === '/css/19fd17d_font-awesome_3.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 2,  '_format' => 'css',  '_route' => '_assetic_19fd17d_2',);
+                }
+
+                // _assetic_19fd17d_3
+                if ($pathinfo === '/css/19fd17d_responsive_4.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 3,  '_format' => 'css',  '_route' => '_assetic_19fd17d_3',);
+                }
+
+                // _assetic_19fd17d_4
+                if ($pathinfo === '/css/19fd17d_colors_5.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 4,  '_format' => 'css',  '_route' => '_assetic_19fd17d_4',);
+                }
+
+                // _assetic_19fd17d_5
+                if ($pathinfo === '/css/19fd17d_tipsy_6.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '19fd17d',  'pos' => 5,  '_format' => 'css',  '_route' => '_assetic_19fd17d_5',);
+                }
+
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/js/247de94')) {
+            // _assetic_247de94
+            if ($pathinfo === '/js/247de94.js') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => NULL,  '_format' => 'js',  '_route' => '_assetic_247de94',);
+            }
+
+            if (0 === strpos($pathinfo, '/js/247de94_part_1_')) {
+                // _assetic_247de94_0
+                if ($pathinfo === '/js/247de94_part_1_custom_1.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 0,  '_format' => 'js',  '_route' => '_assetic_247de94_0',);
+                }
+
+                // _assetic_247de94_1
+                if ($pathinfo === '/js/247de94_part_1_favico_2.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 1,  '_format' => 'js',  '_route' => '_assetic_247de94_1',);
+                }
+
+                if (0 === strpos($pathinfo, '/js/247de94_part_1_jquery')) {
+                    // _assetic_247de94_2
+                    if ($pathinfo === '/js/247de94_part_1_jquery-transit_3.js') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 2,  '_format' => 'js',  '_route' => '_assetic_247de94_2',);
+                    }
+
+                    if (0 === strpos($pathinfo, '/js/247de94_part_1_jquery.')) {
+                        if (0 === strpos($pathinfo, '/js/247de94_part_1_jquery.c')) {
+                            // _assetic_247de94_3
+                            if ($pathinfo === '/js/247de94_part_1_jquery.camera_4.js') {
+                                return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 3,  '_format' => 'js',  '_route' => '_assetic_247de94_3',);
+                            }
+
+                            // _assetic_247de94_4
+                            if ($pathinfo === '/js/247de94_part_1_jquery.countdown_5.js') {
+                                return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 4,  '_format' => 'js',  '_route' => '_assetic_247de94_4',);
+                            }
+
+                        }
+
+                        // _assetic_247de94_5
+                        if ($pathinfo === '/js/247de94_part_1_jquery.elastic_6.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 5,  '_format' => 'js',  '_route' => '_assetic_247de94_5',);
+                        }
+
+                        // _assetic_247de94_6
+                        if ($pathinfo === '/js/247de94_part_1_jquery.gmap_7.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 6,  '_format' => 'js',  '_route' => '_assetic_247de94_6',);
+                        }
+
+                    }
+
+                    // _assetic_247de94_7
+                    if ($pathinfo === '/js/247de94_part_1_jquery_8.js') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 7,  '_format' => 'js',  '_route' => '_assetic_247de94_7',);
+                    }
+
+                    if (0 === strpos($pathinfo, '/js/247de94_part_1_jquery.')) {
+                        // _assetic_247de94_8
+                        if ($pathinfo === '/js/247de94_part_1_jquery.kwicks_9.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 8,  '_format' => 'js',  '_route' => '_assetic_247de94_8',);
+                        }
+
+                        // _assetic_247de94_9
+                        if ($pathinfo === '/js/247de94_part_1_jquery.layerslider_10.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 9,  '_format' => 'js',  '_route' => '_assetic_247de94_9',);
+                        }
+
+                        // _assetic_247de94_10
+                        if ($pathinfo === '/js/247de94_part_1_jquery.nivo_11.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 10,  '_format' => 'js',  '_route' => '_assetic_247de94_10',);
+                        }
+
+                        // _assetic_247de94_11
+                        if ($pathinfo === '/js/247de94_part_1_jquery.refine_12.js') {
+                            return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 11,  '_format' => 'js',  '_route' => '_assetic_247de94_11',);
+                        }
+
+                        if (0 === strpos($pathinfo, '/js/247de94_part_1_jquery.themepunch.')) {
+                            // _assetic_247de94_12
+                            if ($pathinfo === '/js/247de94_part_1_jquery.themepunch.plugins_13.js') {
+                                return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 12,  '_format' => 'js',  '_route' => '_assetic_247de94_12',);
+                            }
+
+                            // _assetic_247de94_13
+                            if ($pathinfo === '/js/247de94_part_1_jquery.themepunch.revolution_14.js') {
+                                return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 13,  '_format' => 'js',  '_route' => '_assetic_247de94_13',);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                // _assetic_247de94_14
+                if ($pathinfo === '/js/247de94_part_1_layerslider.transitions_15.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 14,  '_format' => 'js',  '_route' => '_assetic_247de94_14',);
+                }
+
+                // _assetic_247de94_15
+                if ($pathinfo === '/js/247de94_part_1_plugins_16.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 15,  '_format' => 'js',  '_route' => '_assetic_247de94_15',);
+                }
+
+                // _assetic_247de94_16
+                if ($pathinfo === '/js/247de94_part_1_switcher_17.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '247de94',  'pos' => 16,  '_format' => 'js',  '_route' => '_assetic_247de94_16',);
+                }
+
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/css/f7ac693')) {
+            // _assetic_f7ac693
+            if ($pathinfo === '/css/f7ac693.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_f7ac693',);
+            }
+
+            if (0 === strpos($pathinfo, '/css/f7ac693_')) {
+                // _assetic_f7ac693_0
+                if ($pathinfo === '/css/f7ac693_prettyPhoto_1.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_f7ac693_0',);
+                }
+
+                // _assetic_f7ac693_1
+                if ($pathinfo === '/css/f7ac693_layerslider_2.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_f7ac693_1',);
+                }
+
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -135,17 +308,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/hello')) {
-            // kblogfrontend_home_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'kblogfrontend_home_homepage')), array (  '_controller' => 'kblog\\frontend\\HomeBundle\\Controller\\DefaultController::indexAction',));
+        // kblog_frontend_home_home_index
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'kblog_frontend_home_home_index');
             }
 
-            // core_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'core_homepage')), array (  '_controller' => 'kblog\\CoreBundle\\Controller\\DefaultController::indexAction',));
-            }
-
+            return array (  '_controller' => 'kblog\\frontend\\HomeBundle\\Controller\\HomeController::indexAction',  '_route' => 'kblog_frontend_home_home_index',);
         }
 
         if (0 === strpos($pathinfo, '/log')) {

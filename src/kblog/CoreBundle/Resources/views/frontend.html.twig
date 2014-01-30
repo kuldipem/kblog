@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+    {% block  stylesheets %} 
+        {{ parent() }}
+        <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+
+            {% stylesheets '@CoreBundle/Resources/public/css/style.css'
+                           '@CoreBundle/Resources/public/css/bootstrap.css'
+                           '@CoreBundle/Resources/public/css/font-awesome.css' 
+                           '@CoreBundle/Resources/public/css/responsive.css'
+                           '@CoreBundle/Resources/public/css/colors.css'
+                           '@CoreBundle/Resources/public/css/tipsy.css'
+            filter='yui_css' %}
+                <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+            {% endstylesheets %}
+        <link rel="stylesheet" media="only screen and (-webkit-min-device-pixel-ratio: 2)" type="text/css" href="{{ asset('bundles/CoreBundle/css/retina.css') }}" />
+    {% endblock %}
+
+    {% block baseJavascripts %}
+        {{ parent() }}
+        <script src="{{ jquery_cdn_url }}"></script>
+        <!--[if lt IE 9]>
+            <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+        {% javascripts '@CoreBundle/Resources/public/js/*' filter="yui_js" %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}            
+
+    {% block body %}
+           {{ parent() }}
+    {% endblock %}
