@@ -539,8 +539,8 @@
     <parameter key="stof_doctrine_extensions.uploadable.manager.class">Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager</parameter>
     <parameter key="stof_doctrine_extensions.uploadable.mime_type_guesser.class">Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter</parameter>
     <parameter key="stof_doctrine_extensions.uploadable.default_file_info.class">Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo</parameter>
-    <parameter key="stof_doctrine_extensions.default_locale">en</parameter>
-    <parameter key="stof_doctrine_extensions.default_file_path">null</parameter>
+    <parameter key="stof_doctrine_extensions.default_locale">en_US</parameter>
+    <parameter key="stof_doctrine_extensions.default_file_path">/var/www/html/www.kblog.com/app/../web/uploads</parameter>
     <parameter key="stof_doctrine_extensions.translation_fallback">false</parameter>
     <parameter key="stof_doctrine_extensions.persist_default_translation">false</parameter>
     <parameter key="stof_doctrine_extensions.skip_translation_on_load">false</parameter>
@@ -3586,7 +3586,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52ea00247a58e</argument>
+            <argument>52ecbf8a4f42e</argument>
           </service>
         </argument>
       </argument>
@@ -3856,7 +3856,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52ea00247a58e</argument>
+            <argument>52ecbf8a4f42e</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4465,7 +4465,9 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.orm.default_manager_configurator" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator">
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument>softdeleteable</argument>
+      </argument>
       <argument type="collection"/>
     </service>
     <service id="doctrine.orm.default_entity_manager" class="Doctrine\ORM\EntityManager" factory-method="create">
@@ -4474,6 +4476,10 @@
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
             <argument type="collection">
+              <argument key="GedmoTranslatable">Gedmo\Translatable\Entity</argument>
+              <argument key="GedmoTranslator">Gedmo\Translator\Entity</argument>
+              <argument key="GedmoLoggable">Gedmo\Loggable\Entity</argument>
+              <argument key="GedmoTree">Gedmo\Tree\Entity</argument>
               <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
               <argument key="SonataCoreBundle">Sonata\CoreBundle\Entity</argument>
               <argument key="CoreBundle">kblog\CoreBundle\Entity</argument>
@@ -4511,22 +4517,77 @@
               <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
                 <call method="addDriver">
                   <argument type="service">
-                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument key="/var/www/html/www.kblog.com/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
                       </argument>
-                      <call method="setGlobalBasename">
-                        <argument>mapping</argument>
-                      </call>
                     </service>
                   </argument>
-                  <argument>FOS\UserBundle\Entity</argument>
+                  <argument>Gedmo\Translatable\Entity</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Gedmo\Translator\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Gedmo\Loggable\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Gedmo\Tree\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
                         <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
                         <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
                       </argument>
@@ -4539,12 +4600,29 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity</argument>
+                        <argument>/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity</argument>
                         <argument>/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity</argument>
                         <argument>/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>kblog\CoreBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="/var/www/html/www.kblog.com/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>FOS\UserBundle\Entity</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
@@ -4583,6 +4661,10 @@
             <argument type="service">
               <service class="Doctrine\ORM\Mapping\DefaultNamingStrategy" public="false"/>
             </argument>
+          </call>
+          <call method="addFilter">
+            <argument>softdeleteable</argument>
+            <argument>Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter</argument>
           </call>
         </service>
       </argument>
@@ -4645,6 +4727,9 @@
           </call>
           <call method="setDefaultFileInfoClass">
             <argument>Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo</argument>
+          </call>
+          <call method="setDefaultPath">
+            <argument>/var/www/html/www.kblog.com/app/../web/uploads</argument>
           </call>
         </service>
       </argument>

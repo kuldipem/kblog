@@ -793,19 +793,23 @@ class appDevDebugProjectContainer extends Container
         $d = new \Doctrine\Common\Cache\ArrayCache();
         $d->setNamespace('sf2orm_default_dc5ba504efaaaf713356b082d9822155b34919ec3996688660d8508b9a724f8d');
 
-        $e = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array('/var/www/html/www.kblog.com/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine' => 'FOS\\UserBundle\\Entity'));
-        $e->setGlobalBasename('mapping');
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity', 1 => '/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity', 2 => '/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity', 3 => '/var/www/html/www.kblog.com/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity', 4 => '/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity', 5 => '/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity'));
 
-        $f = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/var/www/html/www.kblog.com/vendor/sonata-project/core-bundle/Sonata/CoreBundle/Entity', 1 => '/var/www/html/www.kblog.com/src/kblog/CoreBundle/Entity'));
+        $f = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array('/var/www/html/www.kblog.com/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine' => 'FOS\\UserBundle\\Entity'));
+        $f->setGlobalBasename('mapping');
 
         $g = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $g->addDriver($e, 'FOS\\UserBundle\\Entity');
-        $g->addDriver($f, 'Sonata\\CoreBundle\\Entity');
-        $g->addDriver($f, 'kblog\\CoreBundle\\Entity');
+        $g->addDriver($e, 'Gedmo\\Translatable\\Entity');
+        $g->addDriver($e, 'Gedmo\\Translator\\Entity');
+        $g->addDriver($e, 'Gedmo\\Loggable\\Entity');
+        $g->addDriver($e, 'Gedmo\\Tree\\Entity');
+        $g->addDriver($e, 'Sonata\\CoreBundle\\Entity');
+        $g->addDriver($e, 'kblog\\CoreBundle\\Entity');
+        $g->addDriver($f, 'FOS\\UserBundle\\Entity');
         $g->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array('/var/www/html/www.kblog.com/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine/model' => 'FOS\\UserBundle\\Model'), '.orm.xml')), 'FOS\\UserBundle\\Model');
 
         $h = new \Doctrine\ORM\Configuration();
-        $h->setEntityNamespaces(array('FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'SonataCoreBundle' => 'Sonata\\CoreBundle\\Entity', 'CoreBundle' => 'kblog\\CoreBundle\\Entity'));
+        $h->setEntityNamespaces(array('GedmoTranslatable' => 'Gedmo\\Translatable\\Entity', 'GedmoTranslator' => 'Gedmo\\Translator\\Entity', 'GedmoLoggable' => 'Gedmo\\Loggable\\Entity', 'GedmoTree' => 'Gedmo\\Tree\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'SonataCoreBundle' => 'Sonata\\CoreBundle\\Entity', 'CoreBundle' => 'kblog\\CoreBundle\\Entity'));
         $h->setMetadataCacheImpl($b);
         $h->setQueryCacheImpl($c);
         $h->setResultCacheImpl($d);
@@ -816,6 +820,7 @@ class appDevDebugProjectContainer extends Container
         $h->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
         $h->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
         $h->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
+        $h->addFilter('softdeleteable', 'Gedmo\\SoftDeleteable\\Filter\\SoftDeleteableFilter');
 
         $this->services['doctrine.orm.default_entity_manager'] = $instance = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $h);
 
@@ -834,7 +839,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_Orm_DefaultManagerConfiguratorService()
     {
-        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array(), array());
+        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array(0 => 'softdeleteable'), array());
     }
 
     /**
@@ -2489,7 +2494,7 @@ class appDevDebugProjectContainer extends Container
         $n = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($l, array('always_use_default_target_path' => false, 'default_target_path' => '/', 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $n->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52ea00247a58e', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52ecbf8a4f42e', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -3981,6 +3986,7 @@ class appDevDebugProjectContainer extends Container
         $a = new \Gedmo\Uploadable\UploadableListener(new \Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter());
         $a->setAnnotationReader($this->get('annotation_reader'));
         $a->setDefaultFileInfoClass('Stof\\DoctrineExtensionsBundle\\Uploadable\\UploadedFileInfo');
+        $a->setDefaultPath('/var/www/html/www.kblog.com/app/../web/uploads');
 
         return $this->services['stof_doctrine_extensions.uploadable.manager'] = new \Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager($a, 'Stof\\DoctrineExtensionsBundle\\Uploadable\\UploadedFileInfo');
     }
@@ -5314,7 +5320,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52ea00247a58e')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52ecbf8a4f42e')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -6124,8 +6130,8 @@ class appDevDebugProjectContainer extends Container
             'stof_doctrine_extensions.uploadable.manager.class' => 'Stof\\DoctrineExtensionsBundle\\Uploadable\\UploadableManager',
             'stof_doctrine_extensions.uploadable.mime_type_guesser.class' => 'Stof\\DoctrineExtensionsBundle\\Uploadable\\MimeTypeGuesserAdapter',
             'stof_doctrine_extensions.uploadable.default_file_info.class' => 'Stof\\DoctrineExtensionsBundle\\Uploadable\\UploadedFileInfo',
-            'stof_doctrine_extensions.default_locale' => 'en',
-            'stof_doctrine_extensions.default_file_path' => NULL,
+            'stof_doctrine_extensions.default_locale' => 'en_US',
+            'stof_doctrine_extensions.default_file_path' => '/var/www/html/www.kblog.com/app/../web/uploads',
             'stof_doctrine_extensions.translation_fallback' => false,
             'stof_doctrine_extensions.persist_default_translation' => false,
             'stof_doctrine_extensions.skip_translation_on_load' => false,

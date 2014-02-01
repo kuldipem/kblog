@@ -99,6 +99,12 @@ class Categories {
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+    
+    
+     /**
+     * @ORM\OneToMany(targetEntity="Blogs", mappedBy="category")
+     */
+    protected $blogs;
 
     /**
      * @var \DateTime

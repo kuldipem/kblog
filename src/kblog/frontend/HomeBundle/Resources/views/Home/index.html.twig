@@ -44,7 +44,9 @@
 
 
     <div id="sticky-menu" class="clearfix">
-         
+         {% block sticky_menu %}
+                    {% include("CoreBundle::sticky_menu.html.twig") %}
+         {% endblock %}
     </div>
         {#      TOP BAR HERE  #}
     <div id="header">
@@ -749,7 +751,7 @@
      {% block javascripts %}
         {{ parent() }}
         {% javascripts '@CoreBundle/Resources/public/js/*' filter="yui_js" %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
+<script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}  
 
