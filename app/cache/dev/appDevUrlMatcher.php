@@ -522,40 +522,40 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::searchAction',  '_route' => 'sonata_admin_search',);
             }
 
-            if (0 === strpos($pathinfo, '/admin/kblog/core/categories')) {
-                // admin_kblog_core_categories_list
-                if ($pathinfo === '/admin/kblog/core/categories/list') {
-                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_list',  '_route' => 'admin_kblog_core_categories_list',);
+            if (0 === strpos($pathinfo, '/admin/kblog/core/category')) {
+                // admin_kblog_core_category_list
+                if ($pathinfo === '/admin/kblog/core/category/list') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_list',  '_route' => 'admin_kblog_core_category_list',);
                 }
 
-                // admin_kblog_core_categories_create
-                if ($pathinfo === '/admin/kblog/core/categories/create') {
-                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_create',  '_route' => 'admin_kblog_core_categories_create',);
+                // admin_kblog_core_category_create
+                if ($pathinfo === '/admin/kblog/core/category/create') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_create',  '_route' => 'admin_kblog_core_category_create',);
                 }
 
-                // admin_kblog_core_categories_batch
-                if ($pathinfo === '/admin/kblog/core/categories/batch') {
-                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_batch',  '_route' => 'admin_kblog_core_categories_batch',);
+                // admin_kblog_core_category_batch
+                if ($pathinfo === '/admin/kblog/core/category/batch') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_batch',  '_route' => 'admin_kblog_core_category_batch',);
                 }
 
-                // admin_kblog_core_categories_edit
-                if (preg_match('#^/admin/kblog/core/categories/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_categories_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_edit',));
+                // admin_kblog_core_category_edit
+                if (preg_match('#^/admin/kblog/core/category/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_category_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_edit',));
                 }
 
-                // admin_kblog_core_categories_delete
-                if (preg_match('#^/admin/kblog/core/categories/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_categories_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_delete',));
+                // admin_kblog_core_category_delete
+                if (preg_match('#^/admin/kblog/core/category/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_category_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_delete',));
                 }
 
-                // admin_kblog_core_categories_show
-                if (preg_match('#^/admin/kblog/core/categories/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_categories_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_show',));
+                // admin_kblog_core_category_show
+                if (preg_match('#^/admin/kblog/core/category/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_kblog_core_category_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_show',));
                 }
 
-                // admin_kblog_core_categories_export
-                if ($pathinfo === '/admin/kblog/core/categories/export') {
-                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_categories_export',  '_route' => 'admin_kblog_core_categories_export',);
+                // admin_kblog_core_category_export
+                if ($pathinfo === '/admin/kblog/core/category/export') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.admin.post',  '_sonata_name' => 'admin_kblog_core_category_export',  '_route' => 'admin_kblog_core_category_export',);
                 }
 
             }

@@ -442,7 +442,7 @@
     <parameter key="assetic.write_to">/var/www/html/www.kblog.com/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -891,10 +891,10 @@
         <argument type="service" id="annotation_reader"/>
       </call>
     </service>
-    <service id="sonata.admin.post" class="kblog\CoreBundle\Admin\CategoriesAdmin" scope="prototype">
-      <tag name="sonata.admin" manager_type="orm" group="Content" label="Post"/>
+    <service id="sonata.admin.post" class="kblog\CoreBundle\Admin\CategoryAdmin" scope="prototype">
+      <tag name="sonata.admin" manager_type="orm" group="Content" label="Categories"/>
       <argument>sonata.admin.post</argument>
-      <argument>kblog\CoreBundle\Entity\Categories</argument>
+      <argument>kblog\CoreBundle\Entity\Category</argument>
       <argument>SonataAdminBundle:CRUD</argument>
       <call method="setTranslationDomain">
         <argument>CoreBundle</argument>
@@ -952,7 +952,7 @@
         <argument type="service" id="sonata.admin.label.strategy.native"/>
       </call>
       <call method="setLabel">
-        <argument>Post</argument>
+        <argument>Categories</argument>
       </call>
       <call method="setPersistFilters">
         <argument>false</argument>
@@ -1015,6 +1015,7 @@
       </call>
       <call method="initialize"/>
     </service>
+    <service id="kblog.util" class="kblog\Util"/>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -3586,7 +3587,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52ecbf8a4f42e</argument>
+            <argument>52ef712bdf1eb</argument>
           </service>
         </argument>
       </argument>
@@ -3856,7 +3857,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52ecbf8a4f42e</argument>
+            <argument>52ef712bdf1eb</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -5266,7 +5267,7 @@
       </call>
       <call method="setAdminClasses">
         <argument type="collection">
-          <argument key="kblog\CoreBundle\Entity\Categories" type="collection">
+          <argument key="kblog\CoreBundle\Entity\Category" type="collection">
             <argument>sonata.admin.post</argument>
           </argument>
         </argument>

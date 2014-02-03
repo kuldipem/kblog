@@ -1,11 +1,11 @@
 services:
     sonata.admin.post:
-        class: kblog\CoreBundle\Admin\CategoriesAdmin
+        class: kblog\CoreBundle\Admin\CategoryAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Categories" }
         arguments:
             - ~
-            - kblog\CoreBundle\Entity\Categories
+            - kblog\CoreBundle\Entity\Category
             - ~
         calls:
             - [ setTranslationDomain, [CoreBundle]]

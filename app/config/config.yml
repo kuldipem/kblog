@@ -193,5 +193,9 @@ stof_doctrine_extensions:
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     orm:
         default: ~
+        
+services:
+    kblog.Util:
+        class:  kblog\Util
 
 

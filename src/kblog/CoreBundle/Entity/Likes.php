@@ -2,50 +2,168 @@
 
 namespace kblog\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping AS ORM;
 
-/**
- * Likes
- *
- * @ORM\Table()
+/** 
  * @ORM\Entity(repositoryClass="kblog\CoreBundle\Entity\Repository\LikesRepository")
+ * @ORM\Table(name="likes")
+ * @ORM\HasLifecycleCallbacks
  */
-class Likes {
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
+class Likes
+{
+    /** 
      * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Blogs", inversedBy="likes")
-     * @ORM\JoinColumn(referencedColumnName="id")
+    /** 
+     * @ORM\Column(type="datetime", nullable=true, name="updated_at")
      */
-    protected $blog;
+    private $updated_at;
+
+    /** 
+     * @ORM\Column(type="datetime", nullable=true, name="created_at")
+     */
+    private $created_at;
+
+   
+    /** 
+     * @ORM\ManyToOne(targetEntity="blog")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
+     */
+    private $blog;
+
+    /** 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="likes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    public function __construct() {
+    	$this->created_at=new \DateTime();
+    	$this->updated_at=new \DateTime();
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedDateTime()
+    {
+    	$this->created_at=new \DateTime();
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedDateTime()
+    {
+    	$this->updated_at=new \DateTime();
+    }
+    
+   
+
 
     /**
-     * @var \DateTime
+     * Get id
      *
-     * @ORM\Column(name="created", type="datetime")
+     * @return integer 
      */
-    private $created;
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @var \DateTime
+     * Set updated_at
      *
-     * @ORM\Column(name="updated", type="datetime")
+     * @param \DateTime $updatedAt
+     * @return Likes
      */
-    private $updated;
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+
+        return $this;
+    }
 
     /**
-     * @var $liker Intance of User
-     * @ORM\ManyToOne(targetEntity="Blogger\UserBundle\Entity\User", inversedBy="likes" )
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * Get updated_at
+     *
+     * @return \DateTime 
      */
-    protected $user;
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
 
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Likes
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set blog
+     *
+     * @param \kblog\CoreBundle\Entity\blog $blog
+     * @return Likes
+     */
+    public function setBlog(\kblog\CoreBundle\Entity\blog $blog)
+    {
+        $this->blog = $blog;
+
+        return $this;
+    }
+
+    /**
+     * Get blog
+     *
+     * @return \kblog\CoreBundle\Entity\blog 
+     */
+    public function getBlog()
+    {
+        return $this->blog;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \kblog\CoreBundle\Entity\User $user
+     * @return Likes
+     */
+    public function setUser(\kblog\CoreBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \kblog\CoreBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
