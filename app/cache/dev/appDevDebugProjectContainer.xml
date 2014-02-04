@@ -26,6 +26,7 @@
       <parameter key="SonataAdminBundle">Sonata\AdminBundle\SonataAdminBundle</parameter>
       <parameter key="CoreBundle">kblog\CoreBundle\CoreBundle</parameter>
       <parameter key="kblogfrontendHomeBundle">kblog\frontend\HomeBundle\kblogfrontendHomeBundle</parameter>
+      <parameter key="UIBundle">kblog\frontend\UIBundle\UIBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -442,7 +443,7 @@
     <parameter key="assetic.write_to">/var/www/html/www.kblog.com/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -2595,6 +2596,12 @@
         <argument>fr</argument>
         <argument>messages</argument>
       </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/html/www.kblog.com/src/kblog/frontend/UIBundle/Resources/translations/messages.fr.xlf</argument>
+        <argument>fr</argument>
+        <argument>messages</argument>
+      </call>
     </service>
     <service id="translation.loader.php" class="Symfony\Component\Translation\Loader\PhpFileLoader">
       <tag name="translation.loader" alias="php"/>
@@ -3587,7 +3594,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52ef712bdf1eb</argument>
+            <argument>52f0cb4064242</argument>
           </service>
         </argument>
       </argument>
@@ -3857,7 +3864,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52ef712bdf1eb</argument>
+            <argument>52f0cb4064242</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -5739,6 +5746,10 @@
       <call method="addPath">
         <argument>/var/www/html/www.kblog.com/src/kblog/frontend/HomeBundle/Resources/views</argument>
         <argument>kblogfrontendHome</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/www.kblog.com/src/kblog/frontend/UIBundle/Resources/views</argument>
+        <argument>UI</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/www.kblog.com/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>

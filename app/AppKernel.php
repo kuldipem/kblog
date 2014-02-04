@@ -25,6 +25,7 @@ class AppKernel extends Kernel {
             new Sonata\AdminBundle\SonataAdminBundle(),
             new kblog\CoreBundle\CoreBundle(),
             new kblog\frontend\HomeBundle\kblogfrontendHomeBundle(),
+            new kblog\frontend\UIBundle\UIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
