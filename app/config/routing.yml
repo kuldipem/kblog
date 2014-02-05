@@ -1,7 +1,6 @@
-ui:
-    resource: "@UIBundle/Controller"
+core:
+    resource: "@CoreBundle/Resources/config/routing.yml"
     prefix:   /
-    type:     annotation
    
 
 kblogfrontend_home:

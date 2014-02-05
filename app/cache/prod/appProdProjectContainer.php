@@ -114,6 +114,7 @@ class appProdProjectContainer extends Container
             'gedmo.listener.translatable' => 'getGedmo_Listener_TranslatableService',
             'gedmo.listener.tree' => 'getGedmo_Listener_TreeService',
             'http_kernel' => 'getHttpKernelService',
+            'kblog.util' => 'getKblog_UtilService',
             'kernel' => 'getKernelService',
             'knp_menu.factory' => 'getKnpMenu_FactoryService',
             'knp_menu.menu_provider' => 'getKnpMenu_MenuProviderService',
@@ -828,6 +829,10 @@ class appProdProjectContainer extends Container
     {
         return $this->services['http_kernel'] = new \Symfony\Component\HttpKernel\DependencyInjection\ContainerAwareHttpKernel($this->get('event_dispatcher'), $this, new \Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver($this, $this->get('controller_name_converter'), $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE)), $this->get('request_stack'));
     }
+    protected function getKblog_UtilService()
+    {
+        return $this->services['kblog.util'] = new \kblog\Util();
+    }
     protected function getKernelService()
     {
         throw new RuntimeException('You have requested a synthetic service ("kernel"). The DIC does not know how to construct this service.');
@@ -990,7 +995,7 @@ class appProdProjectContainer extends Container
         $m->addHandler(new \Symfony\Component\Security\Http\Logout\SessionLogoutHandler());
         $n = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($l, array('always_use_default_target_path' => false, 'default_target_path' => '/', 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $n->setProviderKey('main');
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52ef44ecc6077', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52f1c9698d973', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
     }
     protected function getSecurity_Rememberme_ResponseListenerService()
     {
@@ -1965,6 +1970,7 @@ class appProdProjectContainer extends Container
         $instance->addResource('xliff', '/var/www/html/www.kblog.com/vendor/sonata-project/admin-bundle/Sonata/AdminBundle/Resources/translations/SonataAdminBundle.fr.xliff', 'fr', 'SonataAdminBundle');
         $instance->addResource('xlf', '/var/www/html/www.kblog.com/src/kblog/CoreBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         $instance->addResource('xlf', '/var/www/html/www.kblog.com/src/kblog/frontend/HomeBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
+        $instance->addResource('xlf', '/var/www/html/www.kblog.com/src/kblog/frontend/UIBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         return $instance;
     }
     protected function getTwigService()
@@ -2022,6 +2028,7 @@ class appProdProjectContainer extends Container
         $instance->addPath('/var/www/html/www.kblog.com/vendor/sonata-project/admin-bundle/Sonata/AdminBundle/Resources/views', 'SonataAdmin');
         $instance->addPath('/var/www/html/www.kblog.com/src/kblog/CoreBundle/Resources/views', 'Core');
         $instance->addPath('/var/www/html/www.kblog.com/src/kblog/frontend/HomeBundle/Resources/views', 'kblogfrontendHome');
+        $instance->addPath('/var/www/html/www.kblog.com/src/kblog/frontend/UIBundle/Resources/views', 'UI');
         $instance->addPath('/var/www/html/www.kblog.com/app/Resources/views');
         $instance->addPath('/var/www/html/www.kblog.com/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
         $instance->addPath('/var/www/html/www.kblog.com/vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views');
@@ -2067,7 +2074,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52ef44ecc6077')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52f1c9698d973')), true);
         $instance->setEventDispatcher($this->get('event_dispatcher'));
         return $instance;
     }
@@ -2170,6 +2177,7 @@ class appProdProjectContainer extends Container
                 'SonataAdminBundle' => 'Sonata\\AdminBundle\\SonataAdminBundle',
                 'CoreBundle' => 'kblog\\CoreBundle\\CoreBundle',
                 'kblogfrontendHomeBundle' => 'kblog\\frontend\\HomeBundle\\kblogfrontendHomeBundle',
+                'UIBundle' => 'kblog\\frontend\\UIBundle\\UIBundle',
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdProjectContainer',

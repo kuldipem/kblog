@@ -27,6 +27,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
+        // core_homepage
+        if (preg_match('#^/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'core_homepage')), array (  '_controller' => 'kblog\\CoreBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         // kblog_frontend_home_home_index
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

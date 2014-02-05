@@ -179,27 +179,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/css/f7ac693')) {
-            // _assetic_f7ac693
-            if ($pathinfo === '/css/f7ac693.css') {
-                return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_f7ac693',);
-            }
-
-            if (0 === strpos($pathinfo, '/css/f7ac693_')) {
-                // _assetic_f7ac693_0
-                if ($pathinfo === '/css/f7ac693_prettyPhoto_1.css') {
-                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_f7ac693_0',);
-                }
-
-                // _assetic_f7ac693_1
-                if ($pathinfo === '/css/f7ac693_layerslider_2.css') {
-                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'f7ac693',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_f7ac693_1',);
-                }
-
-            }
-
-        }
-
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -306,6 +285,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+        }
+
+        // core_homepage
+        if (0 === strpos($pathinfo, '/crawler') && preg_match('#^/crawler/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'core_homepage')), array (  '_controller' => 'kblog\\CoreBundle\\Controller\\DefaultController::indexAction',));
         }
 
         // kblog_frontend_home_home_index
