@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 
 /** 
- * @ORM\Entity(repositoryClass="kblog\CoreBundle\Entity\Repository\CommentsRepository")
+ * @ORM\Entity(repositoryClass="kblog\CoreBundle\Repository\CommentsRepository")
  * @ORM\Table(name="comments")
  * @ORM\HasLifecycleCallbacks
  */

@@ -1,8 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: doctrine_extensions.yml }
-    - { resource: @CoreBundle/Resources/config/admin.yml }
     - { resource: twig_globals.yml }
     
 framework:
@@ -36,7 +34,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ CoreBundle, kblogfrontendHomeBundle ]
+    bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -63,39 +61,8 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        entity_managers:
-            default:
-                auto_mapping: true
-                filters:
-                    softdeleteable:
-                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-                        enabled: true
-                mappings:
-                    gedmo_translatable:
-                        type: annotation
-                        prefix: Gedmo\Translatable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
-                        is_bundle: false
-                    gedmo_translator:
-                        type: annotation
-                        prefix: Gedmo\Translator\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
-                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
-                        is_bundle: false
-                    gedmo_loggable:
-                        type: annotation
-                        prefix: Gedmo\Loggable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-                        alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
-                        is_bundle: false
-                    gedmo_tree:
-                        type: annotation
-                        prefix: Gedmo\Tree\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
-                        alias: GedmoTree # this one is optional and will default to the name set for the mapping
-                        is_bundle: false
-        
+        auto_mapping: true
+       
         
         
 # Swiftmailer Configuration
@@ -106,93 +73,88 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: kblog\CoreBundle\Entity\User
+#fos_user:
+#    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+#    firewall_name: main
+#    user_class: kblog\CoreBundle\Entity\User
 
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        # Enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts:   [admin]   
-sonata_admin:
-    security:
-        handler: sonata.admin.security.handler.role
-        acl_user_manager: fos_user.user_manager # Name of the user manager service used to retrieve ACL users
-
-    options:
-        html5_validate: true # does not use html5 validation
-        confirm_exit:   false # disable confirmation when quitting with unsaved changes
-        use_select2:    true # disable select2
-        pager_links:    5     # pager max links to display
-
-    # set to true to persist filter settings per admin module in the user's session
-    persist_filters: false
-    
-sonata_doctrine_orm_admin:
-    # default value is null, so doctrine uses the value defined in the configuration
-    entity_manager: ~
-
-    templates:
-        form:
-            - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig
-        filter:
-            - SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig
-        types:
-            list:
-                array:      SonataAdminBundle:CRUD:list_array.html.twig
-                boolean:    SonataAdminBundle:CRUD:list_boolean.html.twig
-                date:       SonataAdminBundle:CRUD:list_date.html.twig
-                time:       SonataAdminBundle:CRUD:list_time.html.twig
-                datetime:   SonataAdminBundle:CRUD:list_datetime.html.twig
-                text:       SonataAdminBundle:CRUD:base_list_field.html.twig
-                trans:      SonataAdminBundle:CRUD:list_trans.html.twig
-                string:     SonataAdminBundle:CRUD:base_list_field.html.twig
-                smallint:   SonataAdminBundle:CRUD:base_list_field.html.twig
-                bigint:     SonataAdminBundle:CRUD:base_list_field.html.twig
-                integer:    SonataAdminBundle:CRUD:base_list_field.html.twig
-                decimal:    SonataAdminBundle:CRUD:base_list_field.html.twig
-                identifier: SonataAdminBundle:CRUD:base_list_field.html.twig
-                currency:   SonataAdminBundle:CRUD:list_currency.html.twig
-                percent:    SonataAdminBundle:CRUD:list_percent.html.twig
-                choice:     SonataAdminBundle:CRUD:list_choice.html.twig
-                url:        SonataAdminBundle:CRUD:list_url.html.twig
-
-            show:
-                array:      SonataAdminBundle:CRUD:show_array.html.twig
-                boolean:    SonataAdminBundle:CRUD:show_boolean.html.twig
-                date:       SonataAdminBundle:CRUD:show_date.html.twig
-                time:       SonataAdminBundle:CRUD:show_time.html.twig
-                datetime:   SonataAdminBundle:CRUD:show_datetime.html.twig
-                text:       SonataAdminBundle:CRUD:base_show_field.html.twig
-                trans:      SonataAdminBundle:CRUD:show_trans.html.twig
-                string:     SonataAdminBundle:CRUD:base_show_field.html.twig
-                smallint:   SonataAdminBundle:CRUD:base_show_field.html.twig
-                bigint:     SonataAdminBundle:CRUD:base_show_field.html.twig
-                integer:    SonataAdminBundle:CRUD:base_show_field.html.twig
-                decimal:    SonataAdminBundle:CRUD:base_show_field.html.twig
-                currency:   SonataAdminBundle:CRUD:base_currency.html.twig
-                percent:    SonataAdminBundle:CRUD:base_percent.html.twig
-                choice:     SonataAdminBundle:CRUD:show_choice.html.twig
-                url:        SonataAdminBundle:CRUD:show_url.html.twig
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        # Enable the SonataAdminBundle block
+#        sonata.admin.block.admin_list:
+#            contexts:   [admin]   
+#sonata_admin:
+#    security:
+#        handler: sonata.admin.security.handler.role
+#        acl_user_manager: fos_user.user_manager # Name of the user manager service used to retrieve ACL users
+#
+#    options:
+#        html5_validate: true # does not use html5 validation
+#        confirm_exit:   false # disable confirmation when quitting with unsaved changes
+#        use_select2:    true # disable select2
+#        pager_links:    5     # pager max links to display
+#
+#    # set to true to persist filter settings per admin module in the user's session
+#    persist_filters: false
+#    
+#sonata_doctrine_orm_admin:
+#    # default value is null, so doctrine uses the value defined in the configuration
+#    entity_manager: ~
+#
+#    templates:
+#        form:
+#            - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig
+#        filter:
+#            - SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig
+#        types:
+#            list:
+#                array:      SonataAdminBundle:CRUD:list_array.html.twig
+#                boolean:    SonataAdminBundle:CRUD:list_boolean.html.twig
+#                date:       SonataAdminBundle:CRUD:list_date.html.twig
+#                time:       SonataAdminBundle:CRUD:list_time.html.twig
+#                datetime:   SonataAdminBundle:CRUD:list_datetime.html.twig
+#                text:       SonataAdminBundle:CRUD:base_list_field.html.twig
+#                trans:      SonataAdminBundle:CRUD:list_trans.html.twig
+#                string:     SonataAdminBundle:CRUD:base_list_field.html.twig
+#                smallint:   SonataAdminBundle:CRUD:base_list_field.html.twig
+#                bigint:     SonataAdminBundle:CRUD:base_list_field.html.twig
+#                integer:    SonataAdminBundle:CRUD:base_list_field.html.twig
+#                decimal:    SonataAdminBundle:CRUD:base_list_field.html.twig
+#                identifier: SonataAdminBundle:CRUD:base_list_field.html.twig
+#                currency:   SonataAdminBundle:CRUD:list_currency.html.twig
+#                percent:    SonataAdminBundle:CRUD:list_percent.html.twig
+#                choice:     SonataAdminBundle:CRUD:list_choice.html.twig
+#                url:        SonataAdminBundle:CRUD:list_url.html.twig
+#
+#            show:
+#                array:      SonataAdminBundle:CRUD:show_array.html.twig
+#                boolean:    SonataAdminBundle:CRUD:show_boolean.html.twig
+#                date:       SonataAdminBundle:CRUD:show_date.html.twig
+#                time:       SonataAdminBundle:CRUD:show_time.html.twig
+#                datetime:   SonataAdminBundle:CRUD:show_datetime.html.twig
+#                text:       SonataAdminBundle:CRUD:base_show_field.html.twig
+#                trans:      SonataAdminBundle:CRUD:show_trans.html.twig
+#                string:     SonataAdminBundle:CRUD:base_show_field.html.twig
+#                smallint:   SonataAdminBundle:CRUD:base_show_field.html.twig
+#                bigint:     SonataAdminBundle:CRUD:base_show_field.html.twig
+#                integer:    SonataAdminBundle:CRUD:base_show_field.html.twig
+#                decimal:    SonataAdminBundle:CRUD:base_show_field.html.twig
+#                currency:   SonataAdminBundle:CRUD:base_currency.html.twig
+#                percent:    SonataAdminBundle:CRUD:base_percent.html.twig
+#                choice:     SonataAdminBundle:CRUD:show_choice.html.twig
+#                url:        SonataAdminBundle:CRUD:show_url.html.twig
     
 stof_doctrine_extensions:
     default_locale: en_US
-
-    # Only used if you activated the Uploadable extension
     uploadable:
-        # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
         default_file_path:       %kernel.root_dir%/../web/uploads
-
-        # Mime type guesser class: Optional. By default, we provide an adapter for the one present in the HttpFoundation component of Symfony
         mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
-
-        # Default file info class implementing FileInfoInterface: Optional. By default we provide a class which is prepared to receive an UploadedFile instance.
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     orm:
-        default: ~
+        default:
+            timestampable: true
+            sluggable: true
         
 services:
     kblog.Util:

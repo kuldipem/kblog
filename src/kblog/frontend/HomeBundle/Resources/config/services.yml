@@ -1,7 +1,0 @@
-parameters:
-#    kblogfrontend_home.example.class: kblog\frontend\HomeBundle\Example
-
-services:
-#    kblogfrontend_home.example:
-#        class: %kblogfrontend_home.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

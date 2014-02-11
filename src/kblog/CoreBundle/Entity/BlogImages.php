@@ -3,10 +3,11 @@
 namespace kblog\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * BlogImages
- * @ORM\Entity(repositoryClass="kblog\CoreBundle\Entity\Repository\BlogImagesRepository")
+ * @ORM\Entity(repositoryClass="kblog\CoreBundle\Repository\BlogImagesRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="blog_images")
  */
@@ -51,168 +52,20 @@ class BlogImages
     
     /** 
      * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $created_at;
 
     /** 
      * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated_at;
 
   
 
     public function __construct() {
-    	$this->created_at=new \DateTime();
-    	$this->updated_at=new \DateTime();
-    
+    	    
     }
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return BlogImages
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set priority
-     *
-     * @param integer $priority
-     * @return BlogImages
-     */
-    public function setPriority($priority)
-    {
-        $this->priority = $priority;
-
-        return $this;
-    }
-
-    /**
-     * Get priority
-     *
-     * @return integer 
-     */
-    public function getPriority()
-    {
-        return $this->priority;
-    }
-
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     * @return BlogImages
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * Set created_at
-     *
-     * @param \DateTime $createdAt
-     * @return BlogImages
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get created_at
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated_at
-     *
-     * @param \DateTime $updatedAt
-     * @return BlogImages
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updated_at
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Set blog
-     *
-     * @param \kblog\CoreBundle\Entity\Blog $blog
-     * @return BlogImages
-     */
-    public function setBlog(\kblog\CoreBundle\Entity\Blog $blog)
-    {
-        $this->blog = $blog;
-
-        return $this;
-    }
-
-    /**
-     * Get blog
-     *
-     * @return \kblog\CoreBundle\Entity\Blog 
-     */
-    public function getBlog()
-    {
-        return $this->blog;
-    }
 }

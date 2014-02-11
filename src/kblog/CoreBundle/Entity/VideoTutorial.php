@@ -5,7 +5,7 @@ namespace kblog\CoreBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /** 
- * @ORM\Entity(repositoryClass="kblog\CoreBundle\Entity\Repository\VideoTutorialRepository")
+ * @ORM\Entity(repositoryClass="kblog\CoreBundle\Repository\VideoTutorialRepository")
  * @ORM\Table(name="video_tutorials")
  * @ORM\HasLifecycleCallbacks
  * 

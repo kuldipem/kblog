@@ -12,12 +12,16 @@ class DefaultController extends Controller
     {
         $start=time();
         
-        $tmp=file_get_contents("http://www.gamin.impexdirectory.ru");
+        $tmp=file_get_contents("http://atidb.impexdirectory.com/lm_test_2.php");
         
         $c=new Crawler();
         $c->addContent($tmp);
-        //$a = (method_exists($html, 'find')) ? $html->find('a[id=SBs' . $domV['DOMAIN_ID'] . 'e3453]') : 0;
+        $c->filter('a[id="SBs1311e3453"]')->each(function ($node, $i) {  echo $node->text(); });
+       
+//        $tmp=$c->extract("#SBs2e3453");
+        
+      //  $a = (method_exists($html, 'find')) ? $html->find('a[id=SBs' . $domV['DOMAIN_ID'] . 'e3453]') : 0;
         $end=time();
-        return $this->render('CoreBundle::index.html.twig', array('name' => $name,'stDate'=>$start,'enDate'=>$end,"data"=>$c->links()));
+        return $this->render('CoreBundle::index.html.twig', array('name' => $name,'stDate'=>$start,'enDate'=>$end,"data"=>$tmp));
     }
 }

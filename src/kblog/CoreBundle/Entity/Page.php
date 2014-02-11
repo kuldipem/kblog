@@ -5,7 +5,7 @@ namespace kblog\CoreBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /** 
- * @ORM\Entity(repositoryClass="kblog\CoreBundle\Entity\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass="kblog\CoreBundle\Repository\PageRepository")
  * @ORM\Table(name="pages")
  * @ORM\HasLifecycleCallbacks
  * 
